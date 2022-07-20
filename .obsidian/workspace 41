@@ -1,0 +1,151 @@
+{
+  "main": {
+    "id": "f51db3981852b896",
+    "type": "split",
+    "children": [
+      {
+        "id": "fce4fe8f161b898e",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "二进制安全/移动端/安卓安全.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "851e9e350243ecfb",
+    "type": "split",
+    "children": [
+      {
+        "id": "ee94e3fefb77d653",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e1b163804969256c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "92daf2873c615efd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c2c07090200ad099",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9b60c7e04e2078c2",
+    "type": "split",
+    "children": [
+      {
+        "id": "f1b6ff318889dcfa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b414cb0699c1fc66",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "二进制安全/移动端/安卓安全.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "ceaac150bd2e9046",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "二进制安全/移动端/安卓安全.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "556736a15852ef40",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "d16d9fc452cb1ddf",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "二进制安全/移动端/安卓安全.md"
+              }
+            }
+          },
+          {
+            "id": "2659875ef5e3d1d4",
+            "type": "leaf",
+            "state": {
+              "type": "todo",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "fce4fe8f161b898e",
+  "lastOpenFiles": [
+    "二进制安全/移动端/安卓安全.md",
+    "software/Windows.md",
+    "software/macos.md",
+    "二进制安全/files/heap.png",
+    "二进制安全/ptmalloc.md",
+    "二进制安全/Untitled.md",
+    "密码学/AES.md",
+    "二进制安全/AWD.md",
+    "二进制安全/移动端/files/apk files.png",
+    "二进制安全/files/free_chunk.png"
+  ]
+}

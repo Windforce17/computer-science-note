@@ -1,0 +1,153 @@
+{
+  "main": {
+    "id": "49ecf8d612b208aa",
+    "type": "split",
+    "children": [
+      {
+        "id": "94159c6b1646343e",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "todo.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f4fd1954f61fcfae",
+    "type": "split",
+    "children": [
+      {
+        "id": "26c4cdfe860a7a4e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8899ab2d447ec04f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "aeb63d56c1a177bb",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "150a49ffb57a3049",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 316
+  },
+  "right": {
+    "id": "7da134f7d5ae34eb",
+    "type": "split",
+    "children": [
+      {
+        "id": "651b19efc2881d55",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0f5cab9ea44cb0e3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "todo.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "c9e0809271bff95b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "todo.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "ab395de84a71563f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "b76ea40459187eda",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "todo.md"
+              }
+            }
+          },
+          {
+            "id": "8bfbd12ddd45ac64",
+            "type": "leaf",
+            "state": {
+              "type": "todo",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 313.4444885253906
+  },
+  "active": "94159c6b1646343e",
+  "lastOpenFiles": [
+    "todo.md",
+    "Linux 驱动开发.md",
+    "课程/Linux驱动开发/1_基础介绍/1-1_开发环境搭建/README.md",
+    "课程/Linux驱动开发/3_内核结构实现/3-3_sys_call_table查找和遍历/doc/指导书.md",
+    "课程/Linux驱动开发/2_内核函数/2-1_触发panic/doc/指导书.md",
+    "课程/Linux驱动开发/2_内核函数/2-1_触发panic/README.md",
+    "课程/Linux驱动开发/3_内核结构实现/3-17_端口隐藏实现/doc/shellcode编写.md",
+    "课程/Linux驱动开发/3_内核结构实现/3-17_端口隐藏实现/doc/指导书.md",
+    "课程/Linux驱动开发/3_内核结构实现/3-17_端口隐藏实现/README.md",
+    "课程/Linux驱动开发/3_内核结构实现/3-15_网络监控实现/doc/指导书.md"
+  ]
+}

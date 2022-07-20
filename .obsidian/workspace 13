@@ -1,0 +1,145 @@
+{
+  "main": {
+    "id": "eea2102a1f8bbcf3",
+    "type": "split",
+    "children": [
+      {
+        "id": "9d273e44deaccb9f",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "web/Untitled.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9be9f3e0f69426e6",
+    "type": "split",
+    "children": [
+      {
+        "id": "d863193a27b1fc16",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f4a8d4b082d0308c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "801fa26e18a08ed7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "45fd37bdcb8988e1",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7603edbb519975d9",
+    "type": "split",
+    "children": [
+      {
+        "id": "31d4ad2233b04a22",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3298def44910358d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "web/Untitled.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "19b5c96ea43b1639",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "web/Untitled.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1eec98d2123dc8d5",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "42aaef7f7c5a1c7c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "web/Untitled.md"
+              }
+            }
+          },
+          {
+            "id": "eee34f4d472cb80e",
+            "type": "leaf",
+            "state": {
+              "type": "todo",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "9d273e44deaccb9f",
+  "lastOpenFiles": [
+    "web/Untitled.md",
+    "web/中间件攻击.md",
+    "web/WAF绕过.md"
+  ]
+}

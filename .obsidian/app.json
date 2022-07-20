@@ -1,0 +1,16 @@
+{
+  "vimMode": true,
+  "useTab": false,
+  "emacsyKeys": false,
+  "showUnsupportedFiles": true,
+  "showLineNumber": true,
+  "legacyEditor": false,
+  "livePreview": true,
+  "attachmentFolderPath": "./files",
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "current",
+  "lineWrap": true,
+  "readableLineLength": false,
+  "showFrontmatter": true,
+  "foldIndent": true
+}

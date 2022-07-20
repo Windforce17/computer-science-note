@@ -1,0 +1,147 @@
+{
+  "workspaces": {
+    "1": {
+      "main": {
+        "id": "49ecf8d612b208aa",
+        "type": "split",
+        "children": [
+          {
+            "id": "ed06dbc7925be66d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "todo.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "f4fd1954f61fcfae",
+        "type": "split",
+        "children": [
+          {
+            "id": "26c4cdfe860a7a4e",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "8899ab2d447ec04f",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              },
+              {
+                "id": "aeb63d56c1a177bb",
+                "type": "leaf",
+                "state": {
+                  "type": "starred",
+                  "state": {}
+                }
+              },
+              {
+                "id": "150a49ffb57a3049",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {}
+                }
+              }
+            ],
+            "currentTab": 2
+          }
+        ],
+        "direction": "horizontal",
+        "width": 383.0036334991455
+      },
+      "right": {
+        "id": "7da134f7d5ae34eb",
+        "type": "split",
+        "children": [
+          {
+            "id": "651b19efc2881d55",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "0f5cab9ea44cb0e3",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "todo.md",
+                    "collapseAll": true,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": false
+                  }
+                }
+              },
+              {
+                "id": "c9e0809271bff95b",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "todo.md",
+                    "linksCollapsed": true,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "ab395de84a71563f",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true
+                  }
+                }
+              },
+              {
+                "id": "b76ea40459187eda",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "todo.md"
+                  }
+                }
+              },
+              {
+                "id": "8bfbd12ddd45ac64",
+                "type": "leaf",
+                "state": {
+                  "type": "todo",
+                  "state": {}
+                }
+              }
+            ],
+            "currentTab": 3
+          }
+        ],
+        "direction": "horizontal",
+        "width": 212.658447265625,
+        "collapsed": true
+      },
+      "active": "ed06dbc7925be66d"
+    }
+  },
+  "active": "1"
+}
