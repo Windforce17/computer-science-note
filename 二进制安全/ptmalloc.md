@@ -133,6 +133,7 @@ mfastbinptr fastbinsY[];
 2. 覆盖global_max_fast，使得更大的chunk进去fastbin，因为fast bin检查更少：PlaidCTF 2014的datastore、HITCON 2015的fooddb、0CTF 2016的Zerostorage
 3. [[#double free]]
 4. [[#fast bin consoidate]]
+5. [[other#ciscn 2021 lonelywolf|ciscn-2021-lonely-wolf]] 
 ## unsorted bin
 - 只有一个
 - FIFO,头部插入，尾部取出。

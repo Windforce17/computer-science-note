@@ -1,7 +1,7 @@
 # pwn
-## ciscn 2021 lonlywolf
+## ciscn 2021 lonelywolf
 libc-2.27.so
-这道题目kao
+这道题目考察对tcache的理解。修改tcache_struct来绕过tcache的检查和限制。
 ```python
 from hashlib import new
 from pwn import *
