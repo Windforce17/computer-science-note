@@ -298,7 +298,7 @@ typedef struct tcache_entry
 - malloc 内存，且 size 在 tcache 范围内
     - 先从 tcache 取 chunk，直到 tcache 为空
 - tcache 为空后，从 bin 中找如果 `fastbin/smallbin/unsorted bin` 中有 size 符合的 chunk，**会先把** `**fastbin/smallbin/unsorted bin**` **中的 chunk 放到 tcache 中**，**直到填满。之后再从 tcache 中取**； **chunk 在 bin 中的顺序和 tcache 中的顺序会反过来。**
-- 2.27 后面的更新增加了key字段，实际上就是chunk的bk，这个字段在放入bin时会设置为 `tcache_perthread_struct` 的地址。在free()操作时进行校验。
+- 2.27 后面的更新增加了key字段，实际上就是chunk的bk，这个字段在放入bin时会设置为 `tcache_perthread_struct` 的地址。在free()操作时进行校验。实际上绕过也非常容易，随便设置一个值即可。
 
 ### tcache_get()
 
