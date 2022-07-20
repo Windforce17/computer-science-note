@@ -289,15 +289,16 @@ typedef struct tcache_entry
 } tcache_entry;
 ```
 
--   第一次 malloc 时，会先 malloc 一块内存用来存放 `tcache_perthread_struct` 。
--   tcache 之前（<2.27）释放的chunk会放到 fastbin 或者 unsorted bin 中
--   tcache 后：
-    -   free 内存，且 size 小于 small bin size 时直接放入tcache，直到 tcache 被填满（默认是 7 个）
--   tcache 被填满之后，再次 free 的内存和之前一样被放到 fastbin 或者 unsorted bin 中
--   tcache 中的 chunk 不会合并（不取消 inuse bit）
--   malloc 内存，且 size 在 tcache 范围内
-    -   先从 tcache 取 chunk，直到 tcache 为空
--   tcache 为空后，从 bin 中找如果 `fastbin/smallbin/unsorted bin` 中有 size 符合的 chunk，**会先把** `**fastbin/smallbin/unsorted bin**` **中的 chunk 放到 tcache 中**，**直到填满。之后再从 tcache 中取**； **chunk 在 bin 中的顺序和 tcache 中的顺序会反过来。**
+- 第一次 malloc 时，会先 malloc 一块内存用来存放 `tcache_perthread_struct` 。
+- tcache 之前（<2.27）释放的chunk会放到 fastbin 或者 unsorted bin 中
+- tcache 后：
+    - free 内存，且 size 小于 small bin size 时直接放入tcache，直到 tcache 被填满（默认是 7 个）
+- tcache 被填满之后，再次 free 的内存和之前一样被放到 fastbin 或者 unsorted bin 中
+- tcache 中的 chunk 不会合并（不取消 inuse bit）
+- malloc 内存，且 size 在 tcache 范围内
+    - 先从 tcache 取 chunk，直到 tcache 为空
+- tcache 为空后，从 bin 中找如果 `fastbin/smallbin/unsorted bin` 中有 size 符合的 chunk，**会先把** `**fastbin/smallbin/unsorted bin**` **中的 chunk 放到 tcache 中**，**直到填满。之后再从 tcache 中取**； **chunk 在 bin 中的顺序和 tcache 中的顺序会反过来。**
+- 2.27 后面的更新增加了key字段，实际上就是chunk的bk，这个字段在放入bin时会设置为 `tcache_perthread_struct` 的地址。在free()操作时进行校验。
 
 ### tcache_get()
 
@@ -313,7 +314,8 @@ tcache_get (size_t tc_idx)
   assert (tc_idx < TCACHE_MAX_BINS);
   assert (tcache->entries[tc_idx] > 0);
   tcache->entries[tc_idx] = e->next;
-  --(tcache->counts[tc_idx]); // 获得一个 chunk，counts 减一
+  --(tcache->counts[tc_idx]);
+  e->key = NULL;
   return (void *) e;
 }
 ```
@@ -330,6 +332,10 @@ tcache_put (mchunkptr chunk, size_t tc_idx)
 {
   tcache_entry *e = (tcache_entry *) chunk2mem (chunk);
   assert (tc_idx < TCACHE_MAX_BINS);
+
+  /* Mark this chunk as "in the tcache" so the test in _int_free will
+     detect a double free.  */
+  e->key = tcache;
   e->next = tcache->entries[tc_idx];
   tcache->entries[tc_idx] = e;
   ++(tcache->counts[tc_idx]);
