@@ -340,7 +340,7 @@ tcache_put (mchunkptr chunk, size_t tc_idx)
 
 ### 攻击手段
 1. [[#house_of_spirit with tcache]]
-2. 修改`tcache_perthread_struct` 来获得更多free的次数。
+2. double free,但是要改`tcache_perthread_struct` 来获得更多free的次数。因为malloc的次数是大于free的。count为0后就只能去切分top chunk了。
 
 ## Top_chunk
 
