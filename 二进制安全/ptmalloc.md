@@ -302,7 +302,6 @@ typedef struct tcache_entry
 
 ### tcache_get()
 
-没有任何保护，直接count-- 然后返回。
 
 ```c
 /* Caller must ensure that we know tc_idx is valid and there's
