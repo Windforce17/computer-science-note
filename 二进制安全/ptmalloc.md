@@ -1037,6 +1037,8 @@ tls段上还有stack address stack guard canary
 ![[malloc_got.png]]
 2. 不带符号libc偏移寻找和计算：使用ida逆向。
 # glibc版本变化
+## 2.24
+不能在伪造vtable了，检查了vtable地址范围，但是可以错位构造，利用函数指针rce。
 ## 2.27
 新增了tcache，检查非常少。可以直接劫持fd。并且不会检查next chunk的size
 ## 2.28
@@ -1044,16 +1046,6 @@ unsorted bin attack失效
 IO_FILE中的str_finfish str_overflow失效，直接使用malloc和free代替。
 ## 2.29
 tcache增加了一个key判断当前heap是否在tcache中。容易绕过
-```c
-if (__glibc_unlikely (e->key == tcache)) {
-    tcache_entry *tmp;
-    LIBC_PROBE (memory_tcache_double_free, 2, e, tc_idx);
-    for (tmp = tcache->entries[tc_idx]; tmp; tmp = tmp->next)
-        if (tmp == e)
-            malloc_printerr ("free(): double free detected in tcache 2");
-    /* If we get here, it was a coincidence.  We've wasted a few cycles, but don't abort.  */
-}
-```
 unlink 检查prev_size时候合法，off-by-one无法使用了，但可以伪造绕过
 ```c
 if (!prev_inuse(p)) {
