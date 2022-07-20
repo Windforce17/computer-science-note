@@ -1026,8 +1026,9 @@ mmap chunk overflow可以覆盖arena的指针，
 tls段上还有stack address stack guard canary 
 伪造arena的fastbin部分，使下次malloc时可以取得的chunk。
 ## tips
-如果要改写got，那么建议malloc(0x38),因为got表有很多0x40字节。
+1. 如果要改写got，那么建议malloc(0x38),因为got表有很多0x40字节。
 ![[malloc_got.png]]
+2. 不带符号libc偏移寻找和计算：使用ida逆向。
 # glibc版本变化
 ## 2.27
 新增了tcache，检查非常少。可以直接劫持fd。并且不会检查next chunk的size
