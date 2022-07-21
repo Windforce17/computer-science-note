@@ -881,8 +881,8 @@ if (size == nb) {
 2. C语言中字符串结尾是0x00，由于1导致额外多写1个字节的null。strcpy 等字符串操作函数会出现这个问题。
 
 off by one 是与size相关的攻击。
-1. 越界一个释放后的chunk
-1. 缩小chunk造成堆重叠：
+1. 减小释放后chunk的size
+
 ![[shrink chunk.png]]
 
 
@@ -1189,7 +1189,7 @@ unsorted bin attack失效
 IO_FILE中的str_finfish str_overflow失效，直接使用malloc和free代替。
 ## 2.29
 1. tcache增加了一个key判断当前heap是否在tcache中。容易绕过，这个在2.27就引入了
-2. unlink 前检查后面的chunk 的size和当前chunk的prev_size是否相等，注意unlink中检查的是下一个chunk 的prev_size和当前chunk的si，off-by-one无法使用了，但可以伪造绕过
+2. unlink 前检查后面的chunk 的size和当前chunk的prev_size是否相等，注意**unlink中**检查的是下一个chunk 的prev_size和当前chunk的size是否相等，也就是说后向合并时，p前后chunk size 都检查了。off-by-one无法使用了，但可以伪造绕过
 ```c
 /* consolidate backward */
 if (!prev_inuse(p)) {
