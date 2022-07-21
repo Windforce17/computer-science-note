@@ -1183,8 +1183,8 @@ tls段上还有stack address stack guard canary
 unsorted bin attack失效
 IO_FILE中的str_finfish str_overflow失效，直接使用malloc和free代替。
 ## 2.29
-tcache增加了一个key判断当前heap是否在tcache中。容易绕过
-unlink 检查prev_size时候合法，off-by-one无法使用了，但可以伪造绕过
+1. tcache增加了一个key判断当前heap是否在tcache中。容易绕过，这个在2.27就引入了
+2. unlink 检查prev_size时候合法，off-by-one无法使用了，但可以伪造绕过
 ```c
 if (!prev_inuse(p)) {
     prevsize = prev_size (p);
@@ -1195,8 +1195,9 @@ if (!prev_inuse(p)) {
     unlink_chunk (av, p);
 }
 ```
-Unsorted bin attack(house of strom)无法使用了,指针，size通通检查
+3. Unsorted bin attack(house of strom)无法使用了,指针，size通通检查
 ```c
+mchunkptr next = chunk_at_offset (victim, size);
 if (__glibc_unlikely (size <= 2 * SIZE_SZ) || __glibc_unlikely (size > av->system_mem))
     malloc_printerr ("malloc(): invalid size (unsorted)");
 if (__glibc_unlikely (chunksize_nomask (next) < 2 * SIZE_SZ) || __glibc_unlikely (chunksize_nomask (next) > av->system_mem))
@@ -1213,13 +1214,21 @@ if (__glibc_unlikely (bck->fd != victim))
 unsorted_chunks (av)->bk = bck;
 bck->fd = unsorted_chunks (av);
 ```
+4. top chunk size 检查，需要小于system_mems. House of orange,
+House of Force等手段不太行了。
+```c
+ 
+if(__glibc_unlikely (chunksize(p) != prevsize))    *//new*       
+    malloc_printerr ("corrupted size vs. prev_size while consolidating");
+```
+5. 新的手段：
 setcontext的参数改成了rdx:
 link_map劫持,通过link_map获取fini_array中的函数,当执行fini_arry第二个函数时,rdx指向第一个fini_array的位置,这样rdx就可以控制,从而通过setcontext控制程序流.
 ## 2.30
 
 对`large bin`的`bk`和`bk_nextsize`做出了限制,large bin attack无法使用了
 
-```c
+·```c
 else {
     victim_index = largebin_index (size);
     bck = bin_at (av, victim_index);
