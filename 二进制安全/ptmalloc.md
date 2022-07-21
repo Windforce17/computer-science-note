@@ -884,7 +884,7 @@ off by one 是与size相关的攻击。
 1. 减小释放后chunk的size
 
 ![[shrink chunk.png]]
-下面是示例加大了b来绕过tcache
+下面是示例加大了b绕过tcache
 ```c
 #include<stdlib.h>
 #include<stdio.h>
