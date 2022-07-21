@@ -880,6 +880,7 @@ if (size == nb) {
 2. C语言中字符串结尾是0x00，由于1导致额外多写1个字节的null。strcpy 等字符串操作函数会出现这个问题。
 
 off by one 是与size相关的攻击。
+1. 越界一个释放后的chunk
 1. 缩小chunk造成堆重叠：
 ![[shrink chunk.png]]
 
@@ -1065,8 +1066,11 @@ except:
 	r.close()
 ```
 ## house_of_einherjar
-off by one的一种，修改top chunk的 prev_size和prev_inuse导致向前合并任意写
-目标地址处要提前构造`fake chunk`
+1. off by one的一种，修改top chunk的 prev_size和prev_inuse导致向前合并任意写。
+2. 修改下一个正在使用中chunk的prev_inuse，同时修改prev_size 为目标堆块，释放后指令unlink(target chunk)然后加入bin中。
+    - 对重叠
+    - 任意地址写(需要提前绕过unlink双向检查)
+
 
 ## house_of_rabbit
 - 可以修改fastbin的fd指针或size.
@@ -1175,6 +1179,9 @@ tls段上还有stack address stack guard canary
 ![[malloc_got.png]]
 2. 不带符号libc偏移寻找和计算：使用ida逆向。
 # glibc版本变化
+## 2.23
+第11个版本在unlink增加了next_chunk的prev_size 校验，off by one比较难做了。
+[[#unlink]]
 ## 2.24
 不能在伪造vtable了，检查了vtable地址范围，但是可以错位构造，利用函数指针rce。
 ## 2.27
