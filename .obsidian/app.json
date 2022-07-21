@@ -12,5 +12,11 @@
   "lineWrap": true,
   "readableLineLength": false,
   "showFrontmatter": true,
-  "foldIndent": true
+  "foldIndent": true,
+  "pdfExportSettings": {
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  }
 }
