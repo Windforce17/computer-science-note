@@ -845,6 +845,126 @@ int main() {
 
 和fastbin版本的攻击手段相同，但是不需要伪造下一个chunk的size。
 - 注意：伪造的fd 对应的next指针可读。
+
+## Unsorted bin attack
+结果：
+1. 目标地址+指针长度被写成libc段中的一个地址
+  1. bin中的chunk->bk为目标地址
+  2. 如果不bypass glibc的检查，那么heap就此崩坏，后面的malloc操作可能会触发abort。
+  3. 劫持到main_arena，可以修改global_max_fast，增大fastbin范围、或者修改程序循环次数等。
+2. 返回目标地址指针: 
+  1. bin中的chunk->bk可控
+  2. chunk size>bin中的chunk&& chunk size <目标地址->size
+  3. 其他bypass
+```c
+bck = victim->bk;
+/* code */
+unsorted_chunks (av)->bk = bck;
+bck->fd = unsorted_chunks (av);//*(fake_bk + 0x10) = unsorted_chunks (av)
+
+if (size == nb) {
+        set_inuse_bit_at_offset (victim, size);
+  if (av != &main_arena)
+                set_non_main_arena (victim);
+  check_malloced_chunk (av, victim, nb);
+  void *p = chunk2mem (victim);
+  alloc_perturb (p, bytes);
+  return p;
+}
+```
+
+需要把unsorted_bin中剩下的chunk一下申请完,否则会因为分裂chunk报错.
+#todo
+添加样例
+
+## house_of_orange
+
+特点：
+-   首次出现在hitcon_2016. 不通过free获得一个被释放的chunk
+-   存在堆溢出或者其他可改写`top_chunk`大小的漏洞
+
+```
+#include<stdlib.h>
+int main(int argc, char const *argv[])
+{
+        char *a = malloc(0x38);
+        //修改top chunk 大小
+        *(size_t *)(a - 0x10 + 0x40 + 0x8) = 0xd31;
+        a = malloc( 0xe38);
+        return 0;
+}
+```
+
+通过堆溢出修改`top_chunk`的大小,如果`malloc`申请的堆块大小超过了`top_chunk`的大小,将调用`sysmalloc`来进行分配.
+
+`sysmalloc`针对这种情况有两种处理,如果申请大小大于等于`mp_.mmap_threshold`就直接调用`mmap`,否则就扩展`top_chunk`
+
+```
+old_top = av->top;
+old_size = chunksize (old_top);
+old_end = (char *) (chunk_at_offset (old_top, old_size));
+brk = snd_brk = (char *) (MORECORE_FAILURE);//无用
+assert ((old_top == initial_top (av) && old_size == 0) || ((unsigned long) (old_size) >= MINSIZE && prev_inuse (old_top) && ((unsigned long) old_end & pagemask) == 0));
+assert ((unsigned long) (old_size) < (unsigned long) (nb + MINSIZE));
+```
+
+1.  `top_chunk_size > MINSIZE`.`#define MINSIZE (unsigned long)(((MIN_CHUNK_SIZE + MALLOC_ALIGN_MASK) & ~MALLOC_ALIGN_MASK))`.
+2.  `top_chunk`需要有`pre_in_use`的标志(`top_chunk & 1 = 1`).
+3.  `top_chunk`的尾部要求页对齐(由于原`top_chunk_size`满足该条件,所以`fake = real % 0x1000 + n * 0x1000`).
+4.  `top_chunk_size`小于申请分配的内存.
+
+满足条件后就会继续往下执行,最后把`old_top`释放.这样就可以得到一个`unsort_bin`.再次`malloc`即可泄露`libc`,还可以通过`large bin`泄露`heap`.
+
+第二步就是劫持控制流.
+
+劫持控制流使用的是`File Stream Oriented Programming`,用于触发的函数是用于输出错误信息的`malloc_printerr`,`malloc_printerr`其实是调用`__libc_message`函数之后调用`abort`函数,`abort`函数其中调用了`_IO_flush_all_lockp`。
+
+通过`unsortbin attack`修改`_IO_list_all`为`unsorted_chunks (av)`,这样`_IO_list_all`会将`unsorted_chunks (av)`处当作一个`_IO_FILE`结构体,调用`_IO_flush_all_lockp`时由于第一个`_IO_FILE`结构体可能不符合检测(`_mode`字段`1/2`几率通过),就会通过`chain`字段跳转到下一个`IO_FILE_plus`.
+
+```c
+/ ./libio/genops.c
+int _IO_flush_all_lockp (int do_lock) {
+    /* code */
+    while (fp != NULL) {
+        run_fp = fp;
+        if (do_lock)
+                _IO_flockfile (fp);
+
+        if (((fp->_mode <= 0 && fp->_IO_write_ptr > fp->_IO_write_base)
+#if defined _LIBC || defined _GLIBCPP_USE_WCHAR_T
+            || (_IO_vtable_offset (fp) == 0 && fp->_mode > 0 && (fp->_wide_data->_IO_write_ptr > fp->_wide_data->_IO_write_base))
+#endif
+            ) && _IO_OVERFLOW (fp, EOF) == EOF)
+        //#define _IO_OVERFLOW(FP, CH) JUMP1 (__overflow, FP, CH),所以满足前两个就会发生调用.
+                result = EOF;
+
+        if (do_lock)
+                _IO_funlockfile (fp);
+        run_fp = NULL;
+
+        if (last_stamp != _IO_list_all_stamp) {
+                fp = (_IO_FILE *) _IO_list_all;
+                last_stamp = _IO_list_all_stamp;
+            } else
+                fp = fp->_chain;
+    }
+#ifdef _IO_MTSAFE_IO
+    if (do_lock)
+        _IO_lock_unlock (list_all_lock);
+    __libc_cleanup_region_end (0);
+#endif
+    return result;
+}
+```
+
+`_IO_FILE`结构体的`chian`字段(偏移为`0x68`)是`bins`的`index`为`6`的地方,也就是满足大小为`0x70`的`chunk`.
+
+只需要再次利用漏洞将`unsorted bin`大小改为`0x70`,同时满足以下检测即可劫持虚表.
+
+```
+((fp->_mode <= 0 && fp->_IO_write_ptr > fp->_IO_write_base) || (_IO_vtable_offset (fp) == 0 && fp->_mode > 0 && (fp->_wide_data->_IO_write_ptr > fp->_wide_data->_IO_write_base)))
+```
+
 ## house_of_lore
 特点:
 - **改写`small bin chunk`的`bk`指针**。
