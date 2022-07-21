@@ -1270,8 +1270,44 @@ else {
 }
 ```
 ## 2.31
-1. 将unsorted bin 放入large bin时新加一个双链表完整性检查，
-
+1. 将unsorted bin chunk放入large bin时新加一个双链表完整性检查，如果chunk size 大于largbin中尾部的size就会触发。
+```c
+//unsortedbin chunk->size < largebin chunk->size
+if ((unsigned long) (size) < (unsigned long) chunksize_nomask (bck->bk))
+{
+    fwd = bck;
+    bck = bck->bk;
+    victim->fd_nextsize = fwd->fd;
+    victim->bk_nextsize = fwd->fd->bk_nextsize;
+    fwd->fd->bk_nextsize = victim->bk_nextsize->fd_nextsize = victim;
+}
+else //unsortedbin chunk->size >= largebin chunk->size
+{
+    assert (chunk_main_arena (fwd));
+    while ((unsigned long) size < chunksize_nomask (fwd))
+    {
+        fwd = fwd->fd_nextsize;
+        assert (chunk_main_arena (fwd));
+    }
+ 
+    if ((unsigned long) size== (unsigned long) chunksize_nomask (fwd))
+    /* Always insert in the second position.  */
+        fwd = fwd->fd;
+    else
+    {
+        victim->fd_nextsize = fwd;
+        victim->bk_nextsize = fwd->bk_nextsize;
+        if (__glibc_unlikely (fwd->bk_nextsize->fd_nextsize != fwd))
+            malloc_printerr ("malloc(): largebin double linked list corrupted (nextsize)");
+        fwd->bk_nextsize = victim;
+        victim->bk_nextsize->fd_nextsize = victim;
+    }
+    bck = fwd->bk;
+    if (bck->fd != fwd)
+        malloc_printerr ("malloc(): largebin double linked list corrupted (bk)")
+```
+2. tcache count变成两个字节。
+3. 
 ## 2.32
 
 safe-linking 缓解措施，加密了指针，保护`tcache / fast bin`空闲列表的`next / fd`指针，
