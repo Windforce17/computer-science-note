@@ -915,8 +915,8 @@ int main(int argc, char const *argv[])
     printf("b2:%s\n",b2);
     return 0;
 }
-
 ```
+2. 增加释放后chunk的size
 
 
 
