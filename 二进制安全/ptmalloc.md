@@ -567,13 +567,7 @@ malloc 7: 0x561422e45420
 ```
 
 
-## off by one
-溢出一个字节可以导致攻击。溢出null字符又被称作off by null
 
-#todo
-- 覆盖下一个chunk的prev_in_use 导致重分配。
-
-指的是malloc出了一个正在使用的chunk。
 ## unlink
 unlink使用频率很多，是一个宏实现。unlink的chunk P假定已经在链表中了。
 源码
@@ -876,6 +870,16 @@ if (size == nb) {
 需要把unsorted_bin中剩下的chunk一下申请完,否则会因为分裂chunk报错.
 #todo
 添加样例
+## off by one
+溢出一个字节可以导致攻击。溢出null字符又被称作off by null
+off by one 是与size相关的攻击。
+1. 缩小chunk造成堆重叠：
+![[shrink chunk.png]]
+
+#todo
+- 覆盖下一个chunk的prev_in_use 导致重分配。
+
+指的是malloc出了一个正在使用的chunk。
 
 ## house_of_orange
 
