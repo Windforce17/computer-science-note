@@ -6,7 +6,7 @@
       {
         "id": "433f4a33fc5e2a13",
         "type": "leaf",
-        "dimension": 70.53968253968253,
+        "dimension": 82.72524199553237,
         "state": {
           "type": "markdown",
           "state": {
@@ -19,7 +19,7 @@
       {
         "id": "2b6732c49051099c",
         "type": "leaf",
-        "dimension": 14.73015873015873,
+        "dimension": 17.27475800446761,
         "pinned": true,
         "state": {
           "type": "markdown",
@@ -29,19 +29,6 @@
             "source": false
           },
           "pinned": true
-        }
-      },
-      {
-        "id": "3709b4bca81649af",
-        "type": "leaf",
-        "dimension": 14.73015873015873,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "ctf/杂项.md",
-            "mode": "source",
-            "source": false
-          }
         }
       }
     ],
