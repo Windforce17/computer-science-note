@@ -870,7 +870,8 @@ if (size == nb) {
 #todo
 添加样例
 ## off by one
-溢出一个字节可以导致攻击。溢出null字符又被称作off by null。
+堆重叠，重分配是指分配出的chunk覆盖了其他正在使用chunk的范围。
+溢出一个字节也可以导致攻击。溢出null字符又被称作off by null。
 这个攻击方法在glibc>2.29后需要伪造prev_size，相对比较困难。
 出现原因：
 1. 错误的for循环边界，导致越界写1个字节。
@@ -885,10 +886,7 @@ off by one 是与size相关的攻击。
 ![[shrink chunk.png]]
 
 
-#todo
-- 覆盖下一个chunk的prev_in_use 导致重分配。
 
-指的是malloc出了一个正在使用的chunk。
 
 ## house_of_orange
 
@@ -1191,8 +1189,9 @@ unsorted bin attack失效
 IO_FILE中的str_finfish str_overflow失效，直接使用malloc和free代替。
 ## 2.29
 1. tcache增加了一个key判断当前heap是否在tcache中。容易绕过，这个在2.27就引入了
-2. unlink 检查prev_size时候合法，off-by-one无法使用了，但可以伪造绕过
+2. unlink 前检查后面的chunk 的size和当前chunk的prev_size是否相等，注意unlink中检查的是下一个chunk 的prev_size和当前chunk的si，off-by-one无法使用了，但可以伪造绕过
 ```c
+/* consolidate backward */
 if (!prev_inuse(p)) {
     prevsize = prev_size (p);
     size += prevsize;
