@@ -1228,7 +1228,7 @@ link_map劫持,通过link_map获取fini_array中的函数,当执行fini_arry第�
 
 对`large bin`的`bk`和`bk_nextsize`做出了限制,large bin attack无法使用了
 
-·```c
+```c
 else {
     victim_index = largebin_index (size);
     bck = bin_at (av, victim_index);
@@ -1269,6 +1269,9 @@ else {
         victim->fd_nextsize = victim->bk_nextsize = victim;
 }
 ```
+## 2.31
+1. 将unsorted bin 放入large bin时新加一个双链表完整性检查，
+
 ## 2.32
 
 safe-linking 缓解措施，加密了指针，保护`tcache / fast bin`空闲列表的`next / fd`指针，
