@@ -875,7 +875,7 @@ if (size == nb) {
 off by one 是与size相关的攻击。
 1. 缩小chunk造成堆重叠：
 ![[shrink chunk.png]]
-
+这个攻击方法在glibc>2.29后需要wei'z
 #todo
 - 覆盖下一个chunk的prev_in_use 导致重分配。
 
