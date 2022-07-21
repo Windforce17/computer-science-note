@@ -1065,7 +1065,7 @@ except:
 	r.close()
 ```
 ## house_of_einherjar
-offbyone，修改top chunk的 prev_size和prev_inuse导致向前合并任意写
+off by one的一种，修改top chunk的 prev_size和prev_inuse导致向前合并任意写
 目标地址处要提前构造`fake chunk`
 
 ## house_of_rabbit
