@@ -870,6 +870,7 @@ if (size == nb) {
 #todo
 添加样例
 ## off by one
+off by one 是与size相关的攻击。
 堆重叠，重分配是指分配出的chunk覆盖了其他正在使用chunk的范围。
 溢出一个字节也可以导致攻击。溢出null字符又被称作off by null。
 这个攻击方法在glibc>2.29后需要伪造prev_size，相对比较困难。
@@ -880,7 +881,7 @@ if (size == nb) {
 > 最容易想到的答案 10 是错的。这个栅栏有 10 个间隔，11 条栅栏柱。
 2. C语言中字符串结尾是0x00，由于1导致额外多写1个字节的null。strcpy 等字符串操作函数会出现这个问题。
 需要注意的是，由于prev_size的存在，chunk会加8向上对其16bytes，因此需要size为8结尾大小的chunk。
-off by one 是与size相关的攻击。
+
 1. 减小释放后chunk的size
 
 ![[shrink chunk.png]]
