@@ -1307,10 +1307,11 @@ else //unsortedbin chunk->size >= largebin chunk->size
         malloc_printerr ("malloc(): largebin double linked list corrupted (bk)")
 ```
 2. tcache count变成两个字节。
-3. 
+3. 删除了tcache的assert，不再检查index合法性
+4. 申请tcache时判断了count，大于0时才会从tcache申请。
 ## 2.32
 
-safe-linking 缓解措施，加密了指针，保护`tcache / fast bin`空闲列表的`next / fd`指针，
+1. safe-linking 缓解措施，加密了指针，保护`tcache / fast bin`空闲列表的`next / fd`指针，
 
 ```c
 #define PROTECT_PTR(pos, ptr, type)  \
@@ -1320,7 +1321,7 @@ safe-linking 缓解措施，加密了指针，保护`tcache / fast bin`空闲列
        PROTECT_PTR(pos, ptr, type)
 ```
 ![[Pasted image 20220701180645.png]]
-验证tcache是否对齐0x10
+2. tcache_get验证tcache是否对齐0x10
 ```c
 if (__glibc_unlikely (!aligned_OK (e)))
     malloc_printerr ("malloc(): unaligned tcache chunk detected");
