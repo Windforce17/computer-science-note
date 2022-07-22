@@ -880,7 +880,9 @@ off by one 是与size相关的攻击。
 > 
 > 最容易想到的答案 10 是错的。这个栅栏有 10 个间隔，11 条栅栏柱。
 2. C语言中字符串结尾是0x00，由于1导致额外多写1个字节的null。strcpy 等字符串操作函数会出现这个问题。
-需要注意的是，由于prev_size的存在，chunk会加8向上对其16bytes，因此需要size为8结尾大小的chunk。
+注意
+    1. 由于prev_size的存在，chunk会加8向上对其16bytes，因此需要size为8结尾大小的chunk。
+    2. 触发unlink就需要绕过size和prev_size一致检查。
 
 1. 减小释放后chunk的size
 
