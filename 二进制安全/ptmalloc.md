@@ -663,8 +663,8 @@ unlink结束后会合并相邻未分配的chunk，然后放入到unsorted bin中
 
 使用：
 设置p的fd和bk，
-- FD=P->fd=&P-0x18
-- BK=P->bk=&p-0x10
+- FD=P->fd=(size_t)&P-0x18
+- BK=P->bk=(size_t)&p-0x10
 - 结果：p=&p-0x18 ，p指向了p的地址-0x18
 
 unlink_write:
