@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "ctf/平台/pwnable.tw.md",
+            "file": "ctf/平台/other.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ctf/平台/pwnable.tw.md",
+                "file": "ctf/平台/other.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ctf/平台/pwnable.tw.md",
+                "file": "ctf/平台/other.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ctf/平台/pwnable.tw.md"
+                "file": "ctf/平台/other.md"
               }
             }
           },
@@ -138,8 +138,8 @@
   },
   "active": "433f4a33fc5e2a13",
   "lastOpenFiles": [
-    "ctf/平台/other.md",
     "ctf/平台/pwnable.tw.md",
+    "ctf/平台/other.md",
     "二进制安全/ptmalloc.md",
     "密码学/crc32.md",
     "ctf/杂项.md",
