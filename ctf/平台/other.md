@@ -140,6 +140,7 @@ delete()
 p.interactive()
 ```
 ## heap-uaf
+这道题目是uaf练习题目，没有做很多限制，可以尝试在不同glibc版本
 ```c
 #include <stdio.h>
 #include <stdlib.h>
