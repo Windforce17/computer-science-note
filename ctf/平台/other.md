@@ -250,5 +250,7 @@ int main()
 ```
 ### 2.23
 1. 通过unsorted bin uaf来泄露glibc地址
-2. fastbin修改到got或者 __free_hook 来getshell
-3. 
+2. fastbin修改到got或者 `__free_hook` 或者`__malloc_hook` 来getshell
+
+### 2.27
+1. 
