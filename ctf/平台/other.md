@@ -139,3 +139,111 @@ edit(b"/bin/sh\x00"+p64(system_addr()))
 delete()
 p.interactive()
 ```
+## heap-uaf
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+size_t sizearray[20];
+char *heaparray[20];
+
+void myinit()
+{
+    setvbuf(stdout, 0, 2, 0);
+    setvbuf(stdin, 0, 2, 0);
+}
+
+void menu()
+{
+    puts("1.add");
+    puts("2.edit");
+    puts("3.delete");
+    puts("4.show");
+    puts("5.exit");
+    puts("choice> ");
+}
+
+void add()
+{
+    int i;
+    int size;
+    char temp[8];
+    puts("index?");
+    read(0, temp, 8);
+    i = atoi(temp);
+    if (i > 20)
+        exit(0);
+    puts("size?");
+    read(0, temp, 8);
+    size = atoi(temp);
+    if (size > 0 && size < 0x500)
+        sizearray[i] = size;
+    else
+        exit(0);
+    char *p = malloc(size);
+    heaparray[i] = p;
+    puts("content:");
+    read(0, p, size);
+}
+
+void edit()
+{
+    int i;
+    char temp[8];
+    puts("index?");
+    read(0, temp, 8);
+    i = atoi(temp);
+    if (heaparray[i])
+    {
+        puts("content:");
+        read(0, heaparray[i], sizearray[i]);
+    }
+}
+
+void show()
+{
+    int i;
+    char temp[8];
+    puts("index?");
+    read(0, temp, 8);
+    i = atoi(temp);
+    if (heaparray[i])
+        puts(heaparray[i]);
+}
+
+void delete ()
+{
+    int i;
+    char temp[8];
+    puts("index?");
+    read(0, temp, 8);
+    i = atoi(temp);
+    if (heaparray[i])
+        free(heaparray[i]);
+}
+
+int main()
+{
+    int choice;
+    myinit();
+    menu();
+    scanf("%d", &choice);
+    while (1)
+    {
+        if (choice == 1)
+            add();
+        if (choice == 2)
+            edit();
+        if (choice == 3)
+            delete ();
+        if (choice == 4)
+            show();
+        if (choice == 5)
+            exit(0);
+        menu();
+        scanf("%d", &choice);
+    }
+    return 0;
+}
+```
