@@ -883,7 +883,8 @@ off by one 是与size相关的攻击。
 注意
     1. 由于prev_size的存在，chunk会加8向上对其16bytes，因此需要size为8结尾大小的chunk。
     2. 触发unlink就需要绕过size和prev_size一致检查。
-
+    
+不同类型的off by one攻击手法要么free前改size，要么free后改size，但目标一致：制造堆块重叠，可以修改其他堆块的size或者fd指针。
 1. 减小释放后chunk的size
 
 ![[shrink chunk.png]]
