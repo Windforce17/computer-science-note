@@ -963,7 +963,7 @@ int main(int argc, char const *argv[])
     char *c=malloc(0x500);
     char * protected_string=a+0xf0;
     strcpy(protected_string,"please change me!");
-
+//------------------------------------------------------------------
     // fake next chunk  prev_size
     *(a+0x100)=0x20;
     //fake size
@@ -981,6 +981,7 @@ int main(int argc, char const *argv[])
     *(c+8)=0x1;
 
     free(b);
+    //-------------------------------------------------------------
     // overflow to b->size
     char *evil=malloc(0x30);
     strcpy(evil,"hahahahahahaha");
@@ -988,7 +989,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
-
+4. 增加使用中的chunk size
 ## house_of_orange
 
 特点：
