@@ -253,4 +253,5 @@ int main()
 2. fastbin修改到got或者 `__free_hook` 或者`__malloc_hook` 来getshell
 
 ### 2.27
-1. 
+1. 额外增加了tcache机制，甚至不需要伪造size了
+2. 主义
