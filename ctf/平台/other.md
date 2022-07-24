@@ -140,7 +140,7 @@ delete()
 p.interactive()
 ```
 ## heap-uaf
-这道题目是uaf练习题目，没有做很多限制，可以尝试在不同glibc版本
+这道题目是uaf练习题目，没有做很多限制，可以尝试在不同glibc版本不同限制情景下的攻击。
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -246,5 +246,9 @@ int main()
         scanf("%d", &choice);
     }
     return 0;
-}.,
+}
 ```
+### 2.23
+1. 通过unsorted bin uaf来泄露glibc地址
+2. fastbin修改到got或者 __free_hook 来getshell
+3. 
