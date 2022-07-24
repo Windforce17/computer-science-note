@@ -973,7 +973,7 @@ int main(int argc, char const *argv[])
     //fake fd and bk
     *(size_t *)(a+0xe0+0x10)=(size_t)&fake_chunk-0x18;
     *(size_t *)(a+0xe0+0x18)=(size_t)&fake_chunk-0x10;
-    //fake prev_inuse to bypass double fre;
+    //fake prev_inuse to bypass double free;
     *(b+0x4f8)=0x21;
     // overflow!
     *(a+0x108)=0x00;
@@ -989,7 +989,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
-4. 增加使用中的chunk size
+4. 增加使用中的chunk size，和减少chunk size攻击方法一致,都是覆盖了prev_inuse导致前向合并。
 ## house_of_orange
 
 特点：
