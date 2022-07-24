@@ -950,7 +950,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
-3. 减小使用中chunksize
+3. 减小使用中chunksize，覆盖了prev_inuse导致向前合并
 ```c
 #include<stdlib.h>
 #include<stdio.h>
