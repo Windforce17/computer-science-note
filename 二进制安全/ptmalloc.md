@@ -912,7 +912,7 @@ int main(int argc, char const *argv[])
     strcpy(b2,"please change me!");
     free(b1);
     free(c);
-    /
+    // ----------------------------------------------------------
     char *evil=malloc(0x500);
     printf("b2:%s\n",b2);
     strcpy(evil+0x420,"hahahahahahaha");
