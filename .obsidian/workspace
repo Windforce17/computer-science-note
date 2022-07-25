@@ -4,15 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "46e873819d282c40",
+        "id": "433f4a33fc5e2a13",
         "type": "leaf",
+        "pinned": true,
         "state": {
           "type": "markdown",
           "state": {
             "file": "二进制安全/ptmalloc.md",
             "mode": "source",
             "source": false
-          }
+          },
+          "pinned": true
         }
       }
     ],
@@ -136,17 +138,17 @@
     "direction": "horizontal",
     "width": 346.8333435058594
   },
-  "active": "46e873819d282c40",
+  "active": "433f4a33fc5e2a13",
   "lastOpenFiles": [
-    "二进制安全/ptmalloc.md",
-    "配置/zshrc.md",
-    "配置/各种软件源更换.md",
-    "ctf/平台/other.md",
     "ctf/平台/pwnable.tw.md",
+    "ctf/平台/other.md",
+    "二进制安全/ptmalloc.md",
     "密码学/crc32.md",
     "ctf/杂项.md",
     "二进制安全/Linux pwn.md",
     "README.md",
-    "todo.md"
+    "todo.md",
+    "二进制安全/ptmalloc (2).md",
+    "二进制安全/ptmalloc 3.md"
   ]
 }
