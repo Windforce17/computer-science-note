@@ -5,5 +5,6 @@
   "textFontFamily": "CaskaydiaCove Nerd Font Mono,Kaiti SC",
   "interfaceFontFamily": "CaskaydiaCove Nerd Font,Kaiti SC",
   "monospaceFontFamily": "CaskaydiaCove Nerd Font Mono,CaskaydiaCove Nerd Font",
-  "enabledCssSnippets": []
+  "enabledCssSnippets": [],
+  "accentColor": ""
 }
