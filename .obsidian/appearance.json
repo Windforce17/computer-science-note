@@ -1,9 +1,10 @@
 {
   "translucency": true,
-  "baseFontSize": 16,
+  "baseFontSize": 23,
   "theme": "obsidian",
-  "textFontFamily": "CaskaydiaCove Nerd Font Mono,Kaiti SC",
-  "interfaceFontFamily": "CaskaydiaCove Nerd Font,Kaiti SC",
+  "textFontFamily": "CaskaydiaCove Nerd Font Mono",
+  "interfaceFontFamily": "CaskaydiaCove Nerd Font",
   "monospaceFontFamily": "CaskaydiaCove Nerd Font Mono,CaskaydiaCove Nerd Font",
-  "enabledCssSnippets": []
+  "enabledCssSnippets": [],
+  "cssTheme": "Obsidianite"
 }
