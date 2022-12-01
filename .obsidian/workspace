@@ -4,17 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "433f4a33fc5e2a13",
+        "id": "cd3056ee7e9bb21f",
         "type": "leaf",
-        "pinned": true,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "二进制安全/ptmalloc.md",
+            "file": "web/中间件攻击.md",
             "mode": "source",
             "source": false
-          },
-          "pinned": true
+          }
         }
       },
       {
@@ -94,7 +92,7 @@
               "state": {
                 "file": "密码学/AES.md",
                 "collapseAll": true,
-                "extraContext": false,
+                "extraContext": true,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
@@ -149,7 +147,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 346.8333435058594
+    "width": 248.79074096679688
   },
   "active": "8899ab2d447ec04f",
   "lastOpenFiles": [
