@@ -53,7 +53,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "硬件/ESP32.md",
+                "file": "二进制安全/Linux kernel pwn.md",
                 "mode": "source",
                 "source": false
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "硬件/ESP32.md",
+                "file": "二进制安全/Linux kernel pwn.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -143,7 +143,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "硬件/ESP32.md",
+                "file": "二进制安全/Linux kernel pwn.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -166,7 +166,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "硬件/ESP32.md"
+                "file": "二进制安全/Linux kernel pwn.md"
               }
             }
           },
@@ -178,14 +178,16 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
     "width": 346.8333435058594
   },
-  "active": "171e6ca17ea282bf",
+  "active": "b76ea40459187eda",
   "lastOpenFiles": [
+    "硬件/ESP32.md",
     "game/方舟.md",
     "开源.md",
     "二进制安全/Linux kernel pwn.md",
@@ -194,7 +196,6 @@
     "files/vscode_git_sign_off.png",
     "C2/免杀实现.md",
     "Pasted image 20220518101352.png",
-    "esp32.md",
-    "二进制安全/恶意代码分析.md"
+    "esp32.md"
   ]
 }

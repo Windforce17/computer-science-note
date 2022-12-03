@@ -135,3 +135,5 @@ find . -print0 \
 | gzip -9 > initramfs.cpio.gz
 mv ./initramfs.cpio.gz ../
 ```
+# Linux 内核保护
+和用户态的程序相似，内核也有不少保护措施。
