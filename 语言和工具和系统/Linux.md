@@ -26,7 +26,13 @@ Number  Start   End     Size    File system  Name  Flags
 ```
 3. 扩容最后一个分区
 输入resizepart 3
+最后输入100% 回车，就可以扩容最后一个分区了
 ```
-End?  [107GB]?
+(parted) resizepart 3 
+End?  [107GB]? 100%
 ```
 
+4. 扩容文件系统
+分区扩容后还需要扩容文件系统
+如果是LVM的话，稍微有些麻烦，需要先扩容pv，然后扩容vg，最后扩容LV后，扩容文件系统。
+如果没用LVM，直接输入resize2fs
