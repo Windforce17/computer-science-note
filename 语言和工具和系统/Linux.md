@@ -43,7 +43,7 @@ pwn@ubuntu:~% sudo pvs
   /dev/sda3  ubuntu-vg lvm2 a--  <118.00g 20.00g
 ```
 - 扩容vg:
-因为我pv里只有一个vg，所以已经显示出还有20G的空闲空间
+因为我pv里只有一个vg，所以已经显示出还有20G的空闲空间，其他情况可能需要vgextend命令来扩容
 ```sh
 pwn@ubuntu:~% sudo vgs                      
   VG        #PV #LV #SN Attr   VSize    VFree 
@@ -71,5 +71,8 @@ pwn@ubuntu:~% sudo vgdisplay
   VG UUID               E9wWPI-JbbE-pd6I-di0m-rmnC-0LTK-tMeKEU
   
 ```
+- 扩容LV：
+- 
+
 如果没用LVM，直接输入`sudo resize2fs {分区路径}` 即可
 
