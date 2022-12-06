@@ -1,9 +1,12 @@
 # 通用
 ## 磁盘扩容与LVM
 LVM是Linux 内核自带的一种磁盘工具，可以把物理磁盘抽象出来，跨磁盘创建分区，组建raid等。
-通过分区或者磁盘本身创建pv（Physical Volume）。一个分区/磁盘可以创建一个pv
-通过pv创建vg（Volume Group），一个vg可以包含多个pv，vg可以看成我们用的磁盘。
-通过vg创建lv（
+通过分区或者磁盘本身创建pv（Physical Volume）。一个分区或磁盘可以创建一个pv
+通过pv创建vg（Volume Group），一个vg可以包含多个pv，vg可以看成是我们用的磁盘。
+通过vg创建lv（Logical Volume），一个vg可以创建多个lv，lv可以看成是我们用的分区。
+
+（其实你可以直接把一块磁盘格式化成ext4文件系统然后挂载，这样就没有/dev/sda1了，而是直接/dev/sda,LVM同理)
+
 ### 在线扩容磁盘
 有时候vmware分的磁盘小了，需要扩容，可以按照如下操作。
 vmware的磁盘扩容不能有快照，所有快照都要删除。

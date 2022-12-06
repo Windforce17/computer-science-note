@@ -26,9 +26,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "f052ea963eab2833",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "语言和工具和系统/Windows.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -94,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "语言和工具和系统/Linux.md",
+                "file": "语言和工具和系统/Windows.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "语言和工具和系统/Linux.md",
+                "file": "语言和工具和系统/Windows.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -134,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "语言和工具和系统/Linux.md"
+                "file": "语言和工具和系统/Windows.md"
               }
             }
           },
@@ -153,8 +165,9 @@
     "direction": "horizontal",
     "width": 315.5
   },
-  "active": "3fffd4c07bfb9643",
+  "active": "f052ea963eab2833",
   "lastOpenFiles": [
+    "语言和工具和系统/Linux.md",
     "二进制安全/Linux kernel pwn.md",
     "game/方舟.md",
     "C2/免杀实现.md",
@@ -163,7 +176,6 @@
     "二进制安全/Linux pwn.md",
     "二进制安全/x86指令.md",
     "files/vscode_git_sign_off.png",
-    "Pasted image 20220518101352.png",
-    "esp32.md"
+    "Pasted image 20220518101352.png"
   ]
 }
