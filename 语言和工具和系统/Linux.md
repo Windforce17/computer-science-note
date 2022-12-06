@@ -1,5 +1,10 @@
 # 通用
-## 磁盘扩容
+## 磁盘扩容与LVM
+LVM是Linux 内核自带的一种磁盘工具，可以把物理磁盘抽象出来，跨磁盘创建分区，组建raid等。
+通过分区或者磁盘本身创建pv（Physical Volume）。一个分区/磁盘可以创建一个pv
+通过pv创建vg（Volume Group），一个vg可以包含多个pv，vg可以看成我们用的磁盘。
+通过vg创建lv（
+### 在线扩容磁盘
 有时候vmware分的磁盘小了，需要扩容，可以按照如下操作。
 vmware的磁盘扩容不能有快照，所有快照都要删除。
 #todo 
@@ -109,3 +114,24 @@ tmpfs                              389M  4.0K  389M   1% /run/user/1000
 
 如果没用LVM，直接输入`sudo resize2fs {分区路径}` 即可
 
+### 其他LVM相关命令
+#### 创建
+
+- `pvcreate /dev/sd{b,c}1`
+- `vgcreate <VGNAME> <dev name>`
+- `lvcreate -L <SIZE> -n <LV_NAME> <VG_NAME>`
+- `lvcreate -l <SIZE%>vg -n <LV_NAME> <VG_NAME>`
+- `lvcreate -l <SIZE>free -n <LV_NAME> <VG_NAME>`
+
+#### 扩展
+
+- `vgextend <vgname> <pv path>`
+- `lvextend -L [+]SIZE <lv path>` Physical boundary
+- `resize2fs <lv path>` Logical boundary
+- `e2fsck <lv path>` Check file system
+
+#### 减小
+
+- `e2fsck -f <lv path>` Check file system
+- `resize2fs <lv path> <SIZE>` Reduce logical boundary
+- `lvreduce -L [-]SIZE <lv path>` Physical boundary
