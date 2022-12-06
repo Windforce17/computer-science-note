@@ -72,7 +72,40 @@ pwn@ubuntu:~% sudo vgdisplay
   
 ```
 - 扩容LV：
-- 
+```sh
+pwn@ubuntu:~% sudo lvextend -l +100%free /dev/ubuntu-vg/ubuntu-lv         
+  Size of logical volume ubuntu-vg/ubuntu-lv changed from <98.00 GiB (25087 extents) to <118.00 GiB (30207 extents).
+  Logical volume ubuntu-vg/ubuntu-lv successfully resized.
+pwn@ubuntu:~%
+```
+- 扩容文件系统
+扩容lv后，发现文件系统还是原来大小，最后在线扩容文件系统即可，不同的文件系统命令不同，常用的ext4文件系统使用resize2fs即可
+```sh
+pwn@ubuntu:~% df -h           
+Filesystem                         Size  Used Avail Use% Mounted on
+tmpfs                              389M  1.6M  388M   1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv   97G   60G   33G  65% /
+tmpfs                              1.9G     0  1.9G   0% /dev/shm
+tmpfs                              5.0M     0  5.0M   0% /run/lock
+tmpfs                              1.9G     0  1.9G   0% /run/qemu
+/dev/sda2                          2.0G  247M  1.6G  14% /boot
+tmpfs                              389M  4.0K  389M   1% /run/user/1000
+pwn@ubuntu:~% sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+resize2fs 1.46.5 (30-Dec-2021)
+Filesystem at /dev/mapper/ubuntu--vg-ubuntu--lv is mounted on /; on-line resizing required
+old_desc_blocks = 13, new_desc_blocks = 15
+The filesystem on /dev/mapper/ubuntu--vg-ubuntu--lv is now 30931968 (4k) blocks long.
+pwn@ubuntu:~% df -h
+Filesystem                         Size  Used Avail Use% Mounted on
+tmpfs                              389M  1.6M  388M   1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv  116G   60G   52G  54% /
+tmpfs                              1.9G     0  1.9G   0% /dev/shm
+tmpfs                              5.0M     0  5.0M   0% /run/lock
+tmpfs                              1.9G     0  1.9G   0% /run/qemu
+/dev/sda2                          2.0G  247M  1.6G  14% /boot
+tmpfs                              389M  4.0K  389M   1% /run/user/1000
+
+```
 
 如果没用LVM，直接输入`sudo resize2fs {分区路径}` 即可
 
