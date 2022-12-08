@@ -36,7 +36,12 @@ sockets (_.socket_)
 unix区分system和user两套配置，systemctl不加--user默认是--system
 带@符号是一个实例，unit只是模板，@后是实例名
 ### systemctl
-查看信息
+systemctl status {unit|pid} 查看信息
+systemctl list-units 列出所有units
+systemctl list-unit-files 列出所有units文件
+systemctl start {unit} 
+
+
 
 ## 磁盘扩容与LVM
 LVM是Linux 内核自带的一种磁盘工具，可以把物理磁盘抽象出来，跨磁盘创建分区，组建raid等。
