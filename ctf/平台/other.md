@@ -1,3 +1,6 @@
+# mobile
+## 静态分析，hook/调试
+
 # pwn
 ## ciscn 2021 lonelywolf
 libc-2.27.so
