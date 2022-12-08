@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "语言、工具、系统/开源.md",
+                "file": "语言、工具、系统/Linux.md",
                 "mode": "source",
                 "source": false
               }
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "语言、工具、系统/开源.md",
+                "file": "语言、工具、系统/Linux.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "语言、工具、系统/开源.md",
+                "file": "语言、工具、系统/Linux.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "语言、工具、系统/开源.md"
+                "file": "语言、工具、系统/Linux.md"
               }
             }
           },
@@ -158,6 +158,8 @@
   },
   "active": "3fffd4c07bfb9643",
   "lastOpenFiles": [
+    "语言、工具、系统/开源.md",
+    "files/github_add_ssh_key.png",
     "C++逆向.md",
     "esp32.md",
     "语言、工具、系统/Linux.md",
@@ -165,8 +167,6 @@
     "二进制安全/mobile/安卓安全.md",
     "ctf/平台/other.md",
     "语言、工具、系统/Windows.md",
-    "二进制安全/Linux kernel pwn.md",
-    "game/方舟.md",
-    "C2/免杀实现.md"
+    "二进制安全/Linux kernel pwn.md"
   ]
 }
