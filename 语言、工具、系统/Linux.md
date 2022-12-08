@@ -24,15 +24,19 @@ systemd相关的命令，大多数人应该只用过sytemctl.
 - userdbctl: 用户管理
 ### unit
 
-unit有这几种，写unit时扩展名要写对，
+unit有这几种，写unit时扩展名要写对.
 services (_.service_)
 不加扩展名一律认为是service
 mount points (_.mount_)
 /home和home.mount(不一定是文件)等价
 devices (_.device_) 
-/dev/sda2和
+/dev/sda2和(dev-sda2)等价
 sockets (_.socket_)
 
+unix区分system和user两套配置，systemctl不加--user默认是--system
+带@符号是一个实例，unit只是模板，@后是实例名
+### systemctl
+查看信息
 
 ## 磁盘扩容与LVM
 LVM是Linux 内核自带的一种磁盘工具，可以把物理磁盘抽象出来，跨磁盘创建分区，组建raid等。
