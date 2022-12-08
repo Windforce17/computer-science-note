@@ -2,6 +2,7 @@
 ## systemd
 这是唯一一种内核级别的保活工具。虽然超级臃肿，不得不用。
 systemd相关的命令，大多数人应该只用过sytemctl.
+这个命令加上—H user@host 可以远程管理其他机器的systemd
 
 - bootctl: 管理 EFI 和 boot loader
 - busctl: D-Bus 监控
@@ -23,11 +24,16 @@ systemd相关的命令，大多数人应该只用过sytemctl.
 - userdbctl: 用户管理
 ### unit
 
-unit有这几种，写unit时扩展名要写对
-services (_.service_),
+unit有这几种，写unit时扩展名要写对，
+services (_.service_)
+不加扩展名一律认为是service
 mount points (_.mount_)
+/home和home.mount(不一定是文件)等价
 devices (_.device_) 
-sockets (_.socket_).
+/dev/sda2和
+sockets (_.socket_)
+
+
 ## 磁盘扩容与LVM
 LVM是Linux 内核自带的一种磁盘工具，可以把物理磁盘抽象出来，跨磁盘创建分区，组建raid等。
 通过分区或者磁盘本身创建pv（Physical Volume）。一个分区或磁盘可以创建一个pv
