@@ -1,8 +1,38 @@
-# systemd
-这是唯一一种内核级别的保活工具。虽然超级臃肿，
+
+
+
 
 
 # 通用
+## systemd
+这是唯一一种内核级别的保活工具。虽然超级臃肿，不得不用。
+systemd相关的命令，大多数人应该只用过sytemctl.
+
+- bootctl: 管理 EFI 和 boot loader
+- busctl: D-Bus 监控
+- coredumpctl: coredump 处理
+- homectl: Home 目录管理
+- hostnamectl: hostname 配置
+- journalctl: 日志
+- kernel-install: 内核和 initramfs 管理
+- localectl: locale 和键盘布局配置
+- loginctl: login manager 配置
+- machinectl: 虚拟机、容器管理
+- networkctl: 网络管理
+- oomctl: OOM 配置
+- portablectl: 可移植服务镜像配置
+- resolvectl: 域名解析
+- systemctl: 服务管理
+- timedatectl: 时间管理
+- udevadm: udev 管理
+- userdbctl: 用户管理
+### unit
+
+unit有这几种，写unit时扩展名要写对
+services (_.service_),
+mount points (_.mount_)
+devices (_.device_) 
+sockets (_.socket_).
 ## 磁盘扩容与LVM
 LVM是Linux 内核自带的一种磁盘工具，可以把物理磁盘抽象出来，跨磁盘创建分区，组建raid等。
 通过分区或者磁盘本身创建pv（Physical Volume）。一个分区或磁盘可以创建一个pv

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "语言、工具、系统/Linux.md",
+                "file": "software/key.md",
                 "mode": "source",
                 "source": false
               }
@@ -60,7 +60,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "sign",
+                "query": "vmware",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -77,7 +77,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -97,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "语言、工具、系统/Linux.md",
+                "file": "software/key.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "语言、工具、系统/Linux.md",
+                "file": "software/key.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -137,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "语言、工具、系统/Linux.md"
+                "file": "software/key.md"
               }
             }
           },
@@ -158,11 +159,11 @@
   },
   "active": "3fffd4c07bfb9643",
   "lastOpenFiles": [
+    "语言、工具、系统/Linux.md",
     "语言、工具、系统/开源.md",
     "files/github_add_ssh_key.png",
     "C++逆向.md",
     "esp32.md",
-    "语言、工具、系统/Linux.md",
     "语言、工具、系统/flutter.md",
     "二进制安全/mobile/安卓安全.md",
     "ctf/平台/other.md",
