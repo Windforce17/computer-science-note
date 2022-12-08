@@ -44,7 +44,9 @@ systemctl enable|disable {unit}  开机启动|不开机启动一个unit，加�
 systemctl daemon-reload 刷新所有unit配置重新读取，需要root权限
 systemctl reenable {unit} 禁止并立即启用unit开启启动，修改了\[ Install\] 部分需要执行
 systemctl mask {unit} 禁止启动一个unit，不删除文件
-systemctl unmask {unit} 
+systemctl unmask {unit} 让一个unit可以被启动
+
+除此之外，systemd也可以电源管理
 
 
 
