@@ -38,8 +38,13 @@ unix区分system和user两套配置，systemctl不加--user默认是--system
 ### systemctl
 systemctl status {unit|pid} 查看信息
 systemctl list-units 列出所有units
-systemctl list-unit-files 列出所有units文件
-systemctl start {unit} 
+systemctl list-unit-files 列出所有units文件，可以加--state=masked 列出被masked的unit
+systemctl start|stop|restart {unit}  启动停止重启一个unit
+systemctl enable|disable {unit}  开机启动|不开机启动一个unit，加上--now参数立即start|stop
+systemctl daemon-reload 刷新所有unit配置重新读取，需要root权限
+systemctl reenable {unit} 禁止并立即启用unit开启启动，修改了\[ Install\] 部分需要执行
+systemctl mask {unit} 禁止启动一个unit，不删除文件
+systemctl unmask {unit} 
 
 
 
