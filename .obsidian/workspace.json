@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "software/key.md",
+                "file": "语言、工具、系统/Linux.md",
                 "mode": "source",
                 "source": false
               }
@@ -82,7 +82,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 223.5
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "7da134f7d5ae34eb",
@@ -98,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "software/key.md",
+                "file": "语言、工具、系统/Linux.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "software/key.md",
+                "file": "语言、工具、系统/Linux.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -138,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "software/key.md"
+                "file": "语言、工具、系统/Linux.md"
               }
             }
           },
@@ -155,10 +156,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 315.5
+    "width": 200,
+    "collapsed": true
   },
   "active": "3fffd4c07bfb9643",
   "lastOpenFiles": [
+    "software/key.md",
     "语言、工具、系统/Linux.md",
     "语言、工具、系统/开源.md",
     "files/github_add_ssh_key.png",
@@ -167,7 +170,6 @@
     "语言、工具、系统/flutter.md",
     "二进制安全/mobile/安卓安全.md",
     "ctf/平台/other.md",
-    "语言、工具、系统/Windows.md",
-    "二进制安全/Linux kernel pwn.md"
+    "语言、工具、系统/Windows.md"
   ]
 }
