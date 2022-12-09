@@ -50,7 +50,9 @@ systemctl unmask {unit} 让一个unit可以被启动
 优先读取：/etc/systemd/system/ 目录下的unit文件，其次是/usr/lib/systemd/system/
 
 ### target
-一个target是多个unit的组合。使用`systemctl list-units --type=target` 列出所有target
+一个target是多个unit的组合。使用`systemctl list-units --type=target` 列出所有target。
+默认target：systemctl get-default
+系统启动会抵达默认target
 
 
 ## 磁盘扩容与LVM
