@@ -46,7 +46,7 @@ unix区分system和user两套配置，systemctl不加--user默认是--system
 只在after列出后的unit启动后才会启动
 - Before 
 和After相反
-- Requires 
+- Require
 列出的unit会被启动
 - Wants 
 和After相比，不强制要求列出的unit启动
@@ -80,6 +80,13 @@ idle 和simple相似，实际实行的文件等待所有jobs完成后。
 
 \[install\]
 执行systemctl enable 时的一些信息
+- Alias
+除了enable 其他命令可以使用列出的别名
+RequireBy 启用时列出的unit也会启动
+WantedBy  列出的unit和service中的Wants相同
+Also 列出的unit会同时安装或卸载
+DefaultInstance unit限制
+
 ### systemctl
 systemctl status {unit|pid} 查看信息
 systemctl list-units 列出所有units
