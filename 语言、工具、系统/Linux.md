@@ -36,20 +36,34 @@ sockets (_.socket_)
 unix区分system和user两套配置，systemctl不加--user默认是--system
 带@符号是一个实例，unit只是模板，@后是实例名
 文件结构：
-\[unit\]
+ \[unit\]
 包含通用的一些配置，unit名称等。
-Description 名称
-Documentation 文档url
-After 只在after列出后的unit启动后才会启动
-Before 和After相反
-Requires 列出的unit会被启动
-Wants 和After相比，不强制要求列出的unit启动
-Conflicts 和After相反，列出的unit不能启动
+- Description 
+名称
+- Documentation 
+文档url
+- After 
+只在after列出后的unit启动后才会启动
+- Before 
+和After相反
+- Requires 
+列出的unit会被启动
+- Wants 
+和After相比，不强制要求列出的unit启动
+- Conflicts 
+和After相反，列出的unit不能启动
 
 \[{unit type}\]
 不同的unit类型，描述不同。
 \[service\]
 service 是最常用的，大部分情况下写service就足够了
+- Type 
+不同的Type会影响ExecStart等相关选项,下面是Type的几种选项
+simple 默认值，ExecStart启动的主进程就是对应的service
+forking 进程fork出来的子进程是对应的service，主进程退出则启动成功
+oneshot 和simple相似，但是进程要退出
+dbus 
+
 
 
 \[install\]
