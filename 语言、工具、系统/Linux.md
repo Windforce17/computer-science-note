@@ -52,6 +52,11 @@ unix区分system和user两套配置，systemctl不加--user默认是--system
 和After相比，不强制要求列出的unit启动
 - Conflicts 
 和After相反，列出的unit不能启动
+- StartLimitIntervalSec
+在x秒内最多重启StartLimitBurst 次
+- StartLimitAction=reboot
+到达重启限制后的操作
+
 
 \[{unit type}\]
 不同的unit类型，描述不同。
@@ -81,6 +86,8 @@ idle 和simple相似，实际实行的文件等待所有jobs完成后。
 环境变量
 - RestartSec
 重启间隔
+
+
 \[install\]
 执行systemctl enable 时的一些信息
 - Alias
