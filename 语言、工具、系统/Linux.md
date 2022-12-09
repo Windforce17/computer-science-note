@@ -46,8 +46,11 @@ systemctl reenable {unit} 禁止并立即启用unit开启启动，修改了\[ I
 systemctl mask {unit} 禁止启动一个unit，不删除文件
 systemctl unmask {unit} 让一个unit可以被启动
 
-除此之外，systemd也可以电源管理
+除此之外，systemd也可以电源管理.
+优先读取：/etc/systemd/system/ 目录下的unit文件，其次是/usr/lib/systemd/system/
 
+### target
+一个target是多个unit的组合
 
 
 ## 磁盘扩容与LVM
