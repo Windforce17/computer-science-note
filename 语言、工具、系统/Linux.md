@@ -72,12 +72,15 @@ idle 和simple相似，实际实行的文件等待所有jobs完成后。
 - ExecReload
 执行reload时执行的命令
 - Restart
-设置为True后，启用后服务在进程完全退出后重启并清理异常
+重启策略，启用后服务在进程完全退出后重启并清理异常
 - RemainAfterExit
 设置为True后，进程退出后依然认为启动成功。
-
-
-
+- PIDFile
+存放PID的文件
+- Environment
+环境变量
+- RestartSec
+重启间隔
 \[install\]
 执行systemctl enable 时的一些信息
 - Alias
