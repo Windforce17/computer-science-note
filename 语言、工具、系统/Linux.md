@@ -62,7 +62,15 @@ service 是最常用的，大部分情况下写service就足够了
 simple 默认值，ExecStart启动的主进程就是对应的service
 forking 进程fork出来的子进程是对应的service，主进程退出则启动成功
 oneshot 和simple相似，但是进程要退出
-dbus 
+dbus 和simple相似，units 获得D-bus 名称后才算启动
+notify 和simple相似，进程必须使用`sd_notify()` 函数发送消息才算启动
+idle 和simple相似，实际实行的文件等待所有jobs完成后。
+- ExecStart
+启动命令。ExecStartPre和ExecStartPost分别是启动前和启动后执行的命令
+- ExecStop
+结束时执行的命令
+- ExecReload
+执行reload时
 
 
 
