@@ -70,7 +70,11 @@ idle 和simple相似，实际实行的文件等待所有jobs完成后。
 - ExecStop
 结束时执行的命令
 - ExecReload
-执行reload时
+执行reload时执行的命令
+- Restart
+设置为True后，启用后服务在进程完全退出后重启并清理异常
+- RemainAfterExit
+设置为True后，进程退出后依然认为启动成功。
 
 
 
