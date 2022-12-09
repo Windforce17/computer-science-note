@@ -46,10 +46,11 @@ Requires 列出的unit会被启动
 Wants 和After相比，不强制要求列出的unit启动
 Conflicts 和After相反，列出的unit不能启动
 
-\[unit type\]
+\[{unit type}\]
 不同的unit类型，描述不同。
 \[service\]
 service 是最常用的，大部分情况下写service就足够了
+
 
 \[install\]
 执行systemctl enable 时的一些信息
