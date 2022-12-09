@@ -37,13 +37,19 @@ unix区分system和user两套配置，systemctl不加--user默认是--system
 带@符号是一个实例，unit只是模板，@后是实例名
 文件结构：
 \[unit\]
-包含通用的一些配置，unit名称等
+包含通用的一些配置，unit名称等。
+Description 名称
+Documentation 文档url
+After 只在after列出后的unit启动后才会启动
+Requires 列出的unit会被启动
+Wants 和After相比，不强制要求列出的unit启动
+Conflicts 和After相反，列出的unit不能启动
 
 \[unit type\]
 不同的unit类型，描述不同。
 
 \[install\]
-执行systme
+执行systemctl enable 时的一些信息
 ### systemctl
 systemctl status {unit|pid} 查看信息
 systemctl list-units 列出所有units
