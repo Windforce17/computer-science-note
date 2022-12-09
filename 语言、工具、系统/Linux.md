@@ -35,6 +35,15 @@ sockets (_.socket_)
 
 unix区分system和user两套配置，systemctl不加--user默认是--system
 带@符号是一个实例，unit只是模板，@后是实例名
+文件结构：
+\[unit\]
+包含通用的一些配置，unit名称等
+
+\[unit type\]
+不同的unit类型，描述不同。
+
+\[install\]
+执行systme
 ### systemctl
 systemctl status {unit|pid} 查看信息
 systemctl list-units 列出所有units
@@ -48,6 +57,7 @@ systemctl unmask {unit} 让一个unit可以被启动
 
 除此之外，systemd也可以电源管理.
 优先读取：/etc/systemd/system/ 目录下的unit文件，其次是/usr/lib/systemd/system/
+
 
 ### target
 一个target是多个unit的组合。使用`systemctl list-units --type=target` 列出所有target。
