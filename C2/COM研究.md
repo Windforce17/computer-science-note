@@ -9,6 +9,12 @@ DllRegisterServer
 DllUnregisterServer
 几乎所有的COM函数和接口方法都返回HRESULT类型的值，但HRESULT不是句柄
 com调用需要的值
+1.CLSID
+2.IID
+3.虚函数表
+4.方法签名
+
+整理以后制作IDL，获取到IDL之后，就可以使用合适的语言进行调用
 
 
 # 注册表关系
