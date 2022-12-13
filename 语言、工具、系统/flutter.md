@@ -86,6 +86,7 @@ class TapboxB extends StatelessWidget {
 ## 组件
 文本、按钮、图片、复选框、输入框、表单、进度条..
 ## 布局
+常见布局类组件分类有：
 ## material 颜色
 ```dart
 Map<int, Color> color =

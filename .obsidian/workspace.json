@@ -33,7 +33,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "game/csgo.md",
+                "file": "语言、工具、系统/flutter.md",
                 "mode": "source",
                 "source": false
               }
@@ -152,7 +152,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "game/csgo.md"
+                "file": "语言、工具、系统/flutter.md"
               }
             }
           },
@@ -173,15 +173,15 @@
   },
   "active": "bbe19e95fb53aa21",
   "lastOpenFiles": [
+    "software/未命名.md",
+    "software/未命名 1.md",
+    "game/csgo.md",
     "game/方舟.md",
     "语言、工具、系统/Linux.md",
     "software/key.md",
     "语言、工具、系统/开源.md",
     "files/github_add_ssh_key.png",
     "C++逆向.md",
-    "esp32.md",
-    "语言、工具、系统/flutter.md",
-    "二进制安全/mobile/安卓安全.md",
-    "ctf/平台/other.md"
+    "esp32.md"
   ]
 }
