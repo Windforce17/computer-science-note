@@ -88,9 +88,17 @@ class TapboxB extends StatelessWidget {
 ## 布局
 常见布局类组件分类有：
 LeafRenderObjectWidget
-这个widget
+这个widget没有子widget，例如Image就是这种
 SingleChildRenderObjectWidget
+只保护一个widget
 MultiChildRenderObjectWidget
+包含多个wiget
+### 布局模型
+基于RenderBox
+基于Sliver（RenderSliver）按需加载。
+上层组件向下层组件传递约束
+下层组件确定自己的大小，然后告诉上层组件。
+上层组件确定下层组件相对于自身的偏移和确定自身的大小。
 ## material 颜色
 ```dart
 Map<int, Color> color =
