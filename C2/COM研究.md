@@ -1,8 +1,14 @@
 # COM
 com程序一般是dll文件，被提供给主程序调用。不同的com程序具有不同的接口，但是所有的接口都是从class factory 和 IUnknown接口获得的。所以com程序必须实现 class factory 和 Iunknown接口
 IUnKnown接口
-所有COM接口都继承自IUnKnown接口，该接口具有3个成员函数，QueryInterface、AddRef、Release. 
+所有COM接口都继承自IUnKnown接口，该接口具有3个成员函数，QueryInterface、IUnknown::QueryInterface和IClassFactory始终贯穿在com组件的调用中。AddRef、Release. 
 CoCreateInstance 函数创建com实例并返回客户端请求的接口指针。客户端指的是将CLSID传递给系统并请求com对象实例的调用方
+com服务器需要提供 IClassFactory 接口的实现，而且 IClassFactory 包含 CreateInstance方法
+在注册com服务器的时候，如果是进程内注册，即dll，dll必须导出以下函数
+DllRegisterServer
+DllUnregisterServer
+几乎所有的COM函数和接口方法都返回HRESULT类型的值，但HRESULT不是句柄
+com调用需要的值
 
 
 # 注册表关系
